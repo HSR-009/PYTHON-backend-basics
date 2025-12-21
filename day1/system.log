@@ -1,0 +1,19 @@
+
+--- Log Time: 2025-12-21 07:17:59 ---
+User: kali
+Uptime:  07:17:59 up 34 min,  1 user,  load average: 0.22, 0.19, 0.14
+IP Info:
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:6e:13:6e brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute eth0
+       valid_lft 84319sec preferred_lft 84319sec
+    inet6 fd00::a831:e02b:ca72:b87f/64 scope global dynamic noprefixroute 
+       valid_lft 86060sec preferred_lft 14060sec
+    inet6 fe80::341a:df1:919d:cbea/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
