@@ -1,43 +1,46 @@
-🗓️ Day 6 — AI Integration & Intelligent Security Analysis
+🗓️ Day 6 — Backend Intelligence & Reliability
 📌 Overview
 
-Day 6 upgrades the Linux security monitoring system from basic automation to AI-assisted security analysis.
+Day 6 focuses on upgrading a Linux security monitoring script from basic automation to a more intelligent and reliable backend system.
 
-Instead of only counting failed SSH attempts, the system now:
+The system no longer just counts failed SSH attempts.
+It now:
 
-Learns from historical data
+Learns from historical data stored in JSON
 
-Understands normal behavior (baseline)
+Establishes baseline system behavior
 
-Detects anomalies
+Detects abnormal deviations
 
-Assigns a meaningful risk score
+Computes a normalized risk score
 
-Produces intelligent security decisions
+Produces a clear decision output
 
-This makes the project AI + Cybersecurity, not just scripting.
+Handles errors safely for long-running execution
 
-🎯 Objectives
+The emphasis of this day is backend logic, reliability, and explainability, not machine learning frameworks.
 
-By the end of Day 6, the system is able to:
+🎯 Learning Objectives
 
-Analyze historical security logs
+By the end of Day 6, the system can:
 
-Establish baseline SSH behavior
+Read and process historical log data
 
-Detect abnormal login activity
+Model baseline SSH authentication behavior
 
-Generate a risk score (0–100)
+Detect anomalies using statistical rules
 
-Output AI-style security decisions
+Translate raw events into a risk score (0–100)
 
-No deep learning or heavy ML frameworks are used — the focus is on interpretable, explainable intelligence.
+Classify system state using a decision layer
 
-🧠 AI Approach Used
+Run safely under automation (cron-friendly)
 
-This project follows a logic-driven AI approach, which is acceptable and widely used in security systems.
+🧠 Backend Intelligence Approach
 
-AI concepts applied:
+Instead of black-box ML, this project uses logic-driven intelligence, which is common in backend monitoring systems.
+
+Concepts applied:
 
 Baseline behavior modeling
 
@@ -47,15 +50,15 @@ Risk scoring
 
 Decision classification
 
-This approach is suitable for:
+Defensive error handling
 
-Hackathons
+This approach keeps the system:
 
-SIH / AIH
+Transparent
 
-SOC-style security tools
+Easy to debug
 
-Interviews
+Easy to extend later
 
 🔄 System Flow
 Linux SSH Logs
@@ -68,58 +71,80 @@ Anomaly detection
      ↓
 Risk scoring (0–100)
      ↓
-AI decision output
+Decision output
 
 🔍 Features Implemented
 1️⃣ Historical Log Analysis
 
-Reads past scan data from security.json
+Reads past scan results from security.json
 
 Each scan is stored as a single JSON object per line
 
-Enables the system to learn from previous behavior
+Corrupted or invalid JSON lines are safely ignored
+
+This enables the system to learn from previous runs.
 
 2️⃣ Baseline Behavior Calculation
 
-Computes the average number of failed SSH login attempts
+Computes the average number of failed SSH attempts
 
 Represents normal behavior for the system
 
-Used as a reference for detecting abnormal activity
+Used as the reference point for detecting anomalies
 
 3️⃣ Anomaly Detection
 
 Compares current SSH failures with historical baseline
 
-Detection logic:
+Detection rule:
 
 current_failed_attempts > baseline × 2
 
 
-Simple, effective, and explainable
+This method is:
+
+Simple
+
+Explainable
+
+Suitable for backend monitoring tools
 
 4️⃣ Risk Scoring (0–100)
 
-Security events are converted into a normalized risk score:
+Raw counts are converted into a normalized risk score:
 
 Condition	Risk Score
 Normal behavior	20
 Slight deviation	50
 Clear anomaly	80
-Severe attack	100
+Severe spike	100
 
-This makes security insights easy to interpret and prioritize.
+This allows the backend to reason in terms of severity, not just numbers.
 
-5️⃣ AI Decision Layer
+5️⃣ Decision Layer
 
-Based on the risk score, the system generates a high-level decision:
+Based on the risk score, the system classifies the state as:
 
-Risk Score	AI Decision
+Risk Score	Decision
 < 30	Normal Behavior
 30–69	Suspicious Activity
 ≥ 70	Potential Attack
 
-This decision acts as the final AI output.
+This acts as the final backend decision output.
+
+6️⃣ Reliability & Error Handling
+
+All subprocess calls are non-blocking (check=False)
+
+Missing files are handled gracefully
+
+JSON parsing errors are ignored safely
+
+Runtime errors are logged to error.log
+
+The script is safe to run repeatedly via cron
+
+This makes the system suitable for unattended execution.
 
 📄 Sample JSON Output
 {
